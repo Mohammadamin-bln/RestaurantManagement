@@ -41,5 +41,15 @@ namespace RestaurantManagement.infrastructure.Repository.Implements
         {
             return _context.Users.FirstOrDefaultAsync(u => u.Username == username);
         }
+
+        public void UserUpdateProfile(User user)
+        { 
+            _context.Users.Update(user);
+            _context.SaveChanges();
+
+            
+        }
+
+
     }
 }

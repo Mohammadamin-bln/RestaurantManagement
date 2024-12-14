@@ -35,5 +35,10 @@ namespace RestaurantManagement.infrastructure.Repository.Implements
         {
            return _context.Foods.FirstOrDefaultAsync(x => x.Id == id);
         }
+
+        public IQueryable<Food> FoodFilterByPrice()
+        {
+            return _context.Foods.AsQueryable();
+        }
     }
 }

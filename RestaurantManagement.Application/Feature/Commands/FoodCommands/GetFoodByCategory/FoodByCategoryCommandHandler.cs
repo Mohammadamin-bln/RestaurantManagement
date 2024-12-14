@@ -7,9 +7,9 @@ using MediatR;
 using RestaurantManagement.Domain.Entity;
 using RestaurantManagement.infrastructure.Repository.Interfaces;
 
-namespace RestaurantManagement.Application.Feature.Commands.FoodCommands
+namespace RestaurantManagement.Application.Feature.Commands.FoodCommands.GetFoodByCategory
 {
-    public class FoodByCategoryCommandHandler : IRequestHandler<FoodByCategoryCommand,List<Food>>
+    public class FoodByCategoryCommandHandler : IRequestHandler<FoodByCategoryCommand, List<Food>>
     {
         private readonly IFoodRepository _FoodRepository;
         public FoodByCategoryCommandHandler(IFoodRepository foodRepository)
@@ -17,10 +17,10 @@ namespace RestaurantManagement.Application.Feature.Commands.FoodCommands
             _FoodRepository = foodRepository ?? throw new ArgumentNullException(nameof(foodRepository));
 
         }
-        public async Task<List<Food>> Handle(FoodByCategoryCommand request,CancellationToken cancellationToken)
+        public async Task<List<Food>> Handle(FoodByCategoryCommand request, CancellationToken cancellationToken)
         {
-            var foods= await _FoodRepository.FoodByCategory(request.CategoryId);
-            if (foods==null)
+            var foods = await _FoodRepository.FoodByCategory(request.CategoryId);
+            if (foods == null)
             {
                 throw new KeyNotFoundException("not found any foods");
             }

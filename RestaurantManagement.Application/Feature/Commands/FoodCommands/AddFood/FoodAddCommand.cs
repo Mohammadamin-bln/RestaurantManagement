@@ -7,7 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using RestaurantManagement.Domain.Entity;
 
-namespace RestaurantManagement.Application.Feature.Commands.FoodCommands
+namespace RestaurantManagement.Application.Feature.Commands.FoodCommands.AddFood
 {
     public class FoodAddCommand : IRequest<Food>
     {

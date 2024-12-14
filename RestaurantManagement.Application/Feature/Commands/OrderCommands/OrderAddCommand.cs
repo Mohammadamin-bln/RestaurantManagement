@@ -7,7 +7,7 @@ using MediatR;
 using RestaurantManagement.Application.Responses;
 using RestaurantManagement.Domain.Entity;
 
-namespace RestaurantManagement.Application.Feature.OrderCommands
+namespace RestaurantManagement.Application.Feature.Commands.OrderCommands
 {
     public class OrderAddCommand : IRequest<OrderResponse>
     {

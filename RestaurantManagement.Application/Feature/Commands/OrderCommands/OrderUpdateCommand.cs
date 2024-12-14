@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using MediatR;
 using RestaurantManagement.Domain.Enum;
 
-namespace RestaurantManagement.Application.Feature.OrderCommands
+namespace RestaurantManagement.Application.Feature.Commands.OrderCommands
 {
     public class OrderUpdateCommand : IRequest<bool>
     {
         public int OrderId { get; set; }
 
-        public OrderStatusEnum.OrderStatus NewStatus { get; set; }
+        public int NewStatus { get; set; }
     }
 }

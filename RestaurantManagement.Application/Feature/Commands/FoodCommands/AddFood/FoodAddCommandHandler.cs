@@ -10,7 +10,7 @@ using RestaurantManagement.Domain.Entity;
 using RestaurantManagement.infrastructure.Repository.Implements;
 using RestaurantManagement.infrastructure.Repository.Interfaces;
 
-namespace RestaurantManagement.Application.Feature.Commands.FoodCommands
+namespace RestaurantManagement.Application.Feature.Commands.FoodCommands.AddFood
 {
     public class FoodAddCommandHandler : IRequestHandler<FoodAddCommand, Food>
     {

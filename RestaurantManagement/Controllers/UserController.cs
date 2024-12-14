@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantManagement.Application.Feature.Commands.CategoryCommands;
-using RestaurantManagement.Application.Feature.Commands.FoodCommands;
+using RestaurantManagement.Application.Feature.Commands.FoodCommands.FilterFoodByPrice;
+using RestaurantManagement.Application.Feature.Commands.FoodCommands.GetFoodByCategory;
+using RestaurantManagement.Application.Feature.Commands.OrderCommands;
 using RestaurantManagement.Application.Feature.Commands.UserCommands;
-using RestaurantManagement.Application.Feature.OrderCommands;
 using RestaurantManagement.Application.Feature.Queries.Login;
 
 namespace RestaurantManagement.presentation.Controllers
@@ -75,6 +76,29 @@ namespace RestaurantManagement.presentation.Controllers
                 return BadRequest("could not submit order");
             }
             return Ok(token);
+        }
+        [Authorize]
+        [HttpPut("Profile/Update")]
+        public async Task<IActionResult> ChangeProfile(UserUpdateProfileCommand request)
+        {
+            var token = await _mediator.Send(request);
+            if (!token)
+            {
+                return BadRequest("could not change profile");
+            }
+            return Ok(token);
+        }
+
+        [HttpGet("filter/food")]
+        public async Task<IActionResult> FilterFood([FromQuery] FoodFilterByPriceCommand request)
+        {
+            var token = await _mediator.Send(request);
+            if (token.Food==null)
+            {
+                return NotFound("didnt found any food");
+            }
+            return Ok(new {Foods=token.Food,TotalPage=token.TotalPage});
+            
         }
 
 

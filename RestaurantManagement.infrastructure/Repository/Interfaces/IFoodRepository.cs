@@ -14,6 +14,8 @@ namespace RestaurantManagement.infrastructure.Repository.Interfaces
 
         public Task<List<Food>> FoodByCategory(int categoryId);
 
+        public IQueryable<Food> FoodFilterByPrice();
+
         public Task<Food?> FoodById(int id);
     }
 }

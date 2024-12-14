@@ -9,5 +9,9 @@ namespace RestaurantManagement.infrastructure.Repository.Interfaces
         public Task<User?> UserLogin(string username, string password);
 
         public Task<User?> UserGetByName(string username);
+
+        public void UserUpdateProfile(User user);
+
+
     }
 }

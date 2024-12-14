@@ -12,16 +12,16 @@ using RestaurantManagement.infrastructure.Repository.Interfaces;
 using System.Security.Claims;
 using RestaurantManagement.Application.Responses;
 
-namespace RestaurantManagement.Application.Feature.OrderCommands
+namespace RestaurantManagement.Application.Feature.Commands.OrderCommands
 {
-    public  class OrderAddCommandHandler :  IRequestHandler<OrderAddCommand , OrderResponse>
+    public class OrderAddCommandHandler : IRequestHandler<OrderAddCommand, OrderResponse>
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IUserRepository _userRepository;
         private readonly IFoodRepository _foodRepository;
 
-        public OrderAddCommandHandler(IOrderRepository orderRepository , IHttpContextAccessor httpContextAccessor, IUserRepository userRepository,IFoodRepository foodRepository)
+        public OrderAddCommandHandler(IOrderRepository orderRepository, IHttpContextAccessor httpContextAccessor, IUserRepository userRepository, IFoodRepository foodRepository)
         {
             _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
@@ -44,7 +44,7 @@ namespace RestaurantManagement.Application.Feature.OrderCommands
             {
                 throw new KeyNotFoundException("user not found");
             }
-            var food= await _foodRepository.FoodById(request.FoodId);
+            var food = await _foodRepository.FoodById(request.FoodId);
             if (food == null)
             {
                 throw new KeyNotFoundException("food not found");
@@ -58,7 +58,7 @@ namespace RestaurantManagement.Application.Feature.OrderCommands
                 Food = food
             };
 
-            var addedOrder= await _orderRepository.OrderAdd(order);
+            var addedOrder = await _orderRepository.OrderAdd(order);
 
             return new OrderResponse
             {

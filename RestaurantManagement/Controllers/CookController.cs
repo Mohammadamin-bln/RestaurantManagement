@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantManagement.Application.Feature.Commands.CategoryCommands;
-using RestaurantManagement.Application.Feature.Commands.FoodCommands;
-using RestaurantManagement.Application.Feature.OrderCommands;
+using RestaurantManagement.Application.Feature.Commands.FoodCommands.AddFood;
+using RestaurantManagement.Application.Feature.Commands.OrderCommands;
 using RestaurantManagement.Application.Feature.Queries.OrderQueries;
 
 namespace RestaurantManagement.presentation.Controllers
