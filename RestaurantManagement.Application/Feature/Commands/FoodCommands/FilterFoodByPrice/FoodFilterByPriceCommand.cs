@@ -10,9 +10,9 @@ namespace RestaurantManagement.Application.Feature.Commands.FoodCommands.FilterF
 {
     public class FoodFilterByPriceCommand : IRequest<(List<Food> Food, int TotalPage)>
     {
-        public decimal MinPrice { get; set; }
-        public decimal MaxPrice { get; set; }
-        public int CategoryId { get; set; }
-        public int Page { get; set; }
+        public decimal? MinPrice { get; set; }
+        public decimal? MaxPrice { get; set; }
+        public int? CategoryId { get; set; }
+        public int? Page { get; set; }
     }
 }

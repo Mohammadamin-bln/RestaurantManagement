@@ -24,17 +24,27 @@ namespace RestaurantManagement.Application.Feature.Commands.FoodCommands.FilterF
             int pageSize = 5;
             var foodQuery = _foodRepository.FoodFilterByPrice();
 
-            foodQuery = foodQuery.Where(f => f.CategoryId == request.CategoryId)
-                                 .Where(f => f.Price >= request.MinPrice)
-                                 .Where(f => f.Price <= request.MaxPrice);
+            if (request.CategoryId.HasValue)
+            {
+                foodQuery = foodQuery.Where(f => f.CategoryId == request.CategoryId.Value);
+            }
 
+            if (request.MinPrice.HasValue)
+            {
+                foodQuery = foodQuery.Where(f => f.Price >= request.MinPrice.Value);
+            }
+
+            if (request.MaxPrice.HasValue)
+            {
+                foodQuery = foodQuery.Where(f => f.Price <= request.MaxPrice.Value);
+            }
+            int page = request.Page ?? 1;
             int totalCount = await foodQuery.CountAsync();
 
             int totalPages = totalCount / pageSize;
 
-            var foodList = await foodQuery.Skip((request.Page - 1) * pageSize)
-
-                .Take(pageSize).ToListAsync();
+            var foodList = await foodQuery.Skip((page - 1) * pageSize)
+                                            .Take(pageSize).ToListAsync();
 
             return (foodList, totalPages);
         }

@@ -23,8 +23,4 @@
     <ProjectReference Include="..\RestaurantManagement.infrastructure\RestaurantManagement.infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Feature\Queries\Food\" />
-  </ItemGroup>
-
 </Project>
