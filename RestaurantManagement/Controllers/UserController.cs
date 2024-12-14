@@ -6,7 +6,8 @@ using RestaurantManagement.Application.Feature.Commands.CategoryCommands;
 using RestaurantManagement.Application.Feature.Commands.FoodCommands.FilterFoodByPrice;
 using RestaurantManagement.Application.Feature.Commands.FoodCommands.GetFoodByCategory;
 using RestaurantManagement.Application.Feature.Commands.OrderCommands;
-using RestaurantManagement.Application.Feature.Commands.UserCommands;
+using RestaurantManagement.Application.Feature.Commands.UserCommands.AddUser;
+using RestaurantManagement.Application.Feature.Commands.UserCommands.UpdateUserProfile;
 using RestaurantManagement.Application.Feature.Queries.Login;
 
 namespace RestaurantManagement.presentation.Controllers

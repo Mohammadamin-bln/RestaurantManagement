@@ -49,6 +49,18 @@ namespace RestaurantManagement.infrastructure.Repository.Implements
 
             
         }
+        public async Task<bool> UserDelete(int userId)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+            {
+                return false;
+            }
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return true;
+            
+        }
 
 
     }

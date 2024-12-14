@@ -4,12 +4,12 @@ using RestaurantManagement.Domain.Context;
 using RestaurantManagement.infrastructure.Repository.Implements;
 using RestaurantManagement.infrastructure.Repository.Interfaces;
 using MediatR;
-using RestaurantManagement.Application.Feature.Commands.UserCommands;
 using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using System.Security.Claims;
+using RestaurantManagement.Application.Feature.Commands.UserCommands.AddUser;
 
 
 var builder = WebApplication.CreateBuilder(args);

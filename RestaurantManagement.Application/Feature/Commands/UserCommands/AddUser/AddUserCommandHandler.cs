@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using RestaurantManagement.Domain.Entity;
 using RestaurantManagement.infrastructure.Repository.Interfaces;
 
-namespace RestaurantManagement.Application.Feature.Commands.UserCommands
+namespace RestaurantManagement.Application.Feature.Commands.UserCommands.AddUser
 {
     public class AddUserCommandHandler : IRequestHandler<AddUserCommand, User>
     {

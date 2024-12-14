@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using MediatR;
 using RestaurantManagement.Domain.Entity;
 
-namespace RestaurantManagement.Application.Feature.Commands.UserCommands
+namespace RestaurantManagement.Application.Feature.Commands.UserCommands.AddUser
 {
     public class AddUserCommand : IRequest<User>
     {

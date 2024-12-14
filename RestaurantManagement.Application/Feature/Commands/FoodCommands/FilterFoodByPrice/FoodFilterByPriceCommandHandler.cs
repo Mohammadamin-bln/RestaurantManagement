@@ -30,7 +30,7 @@ namespace RestaurantManagement.Application.Feature.Commands.FoodCommands.FilterF
 
             int totalCount = await foodQuery.CountAsync();
 
-            int totalPages = (totalCount / pageSize);
+            int totalPages = totalCount / pageSize;
 
             var foodList = await foodQuery.Skip((request.Page - 1) * pageSize)
 

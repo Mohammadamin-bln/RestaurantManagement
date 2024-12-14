@@ -8,9 +8,9 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using RestaurantManagement.infrastructure.Repository.Interfaces;
 
-namespace RestaurantManagement.Application.Feature.Commands.UserCommands
+namespace RestaurantManagement.Application.Feature.Commands.UserCommands.UpdateUserProfile
 {
-    public class UserUpdateProfileCommandHandler : IRequestHandler<UserUpdateProfileCommand,bool>
+    public class UserUpdateProfileCommandHandler : IRequestHandler<UserUpdateProfileCommand, bool>
     {
         private readonly IUserRepository _userRepository;
         private readonly IHttpContextAccessor _contextAccessor;
@@ -18,10 +18,10 @@ namespace RestaurantManagement.Application.Feature.Commands.UserCommands
         {
             _userRepository = userRepository;
             _contextAccessor = httpContextAccessor;
-            
+
         }
 
-        public async Task<bool> Handle(UserUpdateProfileCommand request , CancellationToken cancellationToken)
+        public async Task<bool> Handle(UserUpdateProfileCommand request, CancellationToken cancellationToken)
         {
             var claim = _contextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier);
             var username = claim?.Value;
@@ -36,11 +36,11 @@ namespace RestaurantManagement.Application.Feature.Commands.UserCommands
                 throw new KeyNotFoundException("could not find the user");
             }
 
-            if (!string.IsNullOrEmpty(request.Username)&& request.Username!=user.Username)
+            if (!string.IsNullOrEmpty(request.Username) && request.Username != user.Username)
             {
                 user.Username = request.Username;
             }
-            bool isPasswordValid= BCrypt.Net.BCrypt.Verify(request.CurrentPassword, user.Password);
+            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(request.CurrentPassword, user.Password);
             if (!isPasswordValid)
             {
                 throw new UnauthorizedAccessException("invalid password");
@@ -48,7 +48,7 @@ namespace RestaurantManagement.Application.Feature.Commands.UserCommands
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
             user.Password = hashedPassword;
 
-             _userRepository.UserUpdateProfile(user);
+            _userRepository.UserUpdateProfile(user);
 
             return true;
 

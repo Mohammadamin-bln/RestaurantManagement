@@ -12,6 +12,6 @@ namespace RestaurantManagement.infrastructure.Repository.Interfaces
 
         public void UserUpdateProfile(User user);
 
-
+        public Task<bool> UserDelete(int userId);
     }
 }

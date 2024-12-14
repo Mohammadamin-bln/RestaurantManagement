@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MediatR;
 
-namespace RestaurantManagement.Application.Feature.Commands.UserCommands
+namespace RestaurantManagement.Application.Feature.Commands.UserCommands.UpdateUserProfile
 {
     public class UserUpdateProfileCommand : IRequest<bool>
     {
