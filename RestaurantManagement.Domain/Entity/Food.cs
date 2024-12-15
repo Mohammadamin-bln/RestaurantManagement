@@ -22,5 +22,8 @@ namespace RestaurantManagement.Domain.Entity
         public Category Category { get; set; }
 
 
+        public ICollection<Review> Reviews { get; set; }
+
+
     }
 }

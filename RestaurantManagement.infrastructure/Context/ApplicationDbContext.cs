@@ -20,6 +20,7 @@ namespace RestaurantManagement.Domain.Context
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
 
     }

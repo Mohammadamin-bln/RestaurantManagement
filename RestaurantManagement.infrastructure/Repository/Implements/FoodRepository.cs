@@ -40,5 +40,16 @@ namespace RestaurantManagement.infrastructure.Repository.Implements
         {
             return _context.Foods.AsQueryable();
         }
+
+        public async Task<List<Food>> GetTopRatedFood()
+        {
+            return await  _context.Foods
+                .Include(f => f.Reviews)
+                .Where(f => f.Reviews.Any())
+                .OrderByDescending(f => f.Reviews.Average(x => x.Rating))
+                .Take(5)
+                .ToListAsync();
+
+        }
     }
 }

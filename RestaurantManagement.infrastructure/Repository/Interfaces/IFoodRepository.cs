@@ -17,5 +17,6 @@ namespace RestaurantManagement.infrastructure.Repository.Interfaces
         public IQueryable<Food> FoodFilterByPrice();
 
         public Task<Food?> FoodById(int id);
+        public Task<List<Food>> GetTopRatedFood();
     }
 }

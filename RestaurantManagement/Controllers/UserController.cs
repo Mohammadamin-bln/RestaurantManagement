@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using RestaurantManagement.Application.Feature.Commands.CategoryCommands;
 using RestaurantManagement.Application.Feature.Commands.FoodCommands.FilterFoodByPrice;
 using RestaurantManagement.Application.Feature.Commands.FoodCommands.GetFoodByCategory;
+using RestaurantManagement.Application.Feature.Commands.FoodCommands.TopRatedFoods;
 using RestaurantManagement.Application.Feature.Commands.OrderCommands;
+using RestaurantManagement.Application.Feature.Commands.ReviewCommands.SubmitReview;
 using RestaurantManagement.Application.Feature.Commands.UserCommands.AddUser;
 using RestaurantManagement.Application.Feature.Commands.UserCommands.UpdateUserProfile;
 using RestaurantManagement.Application.Feature.Queries.Login;
@@ -101,6 +103,28 @@ namespace RestaurantManagement.presentation.Controllers
             return Ok(new {Foods=token.Food,TotalPage=token.TotalPage});
             
         }
+        [Authorize]
+        [HttpPost("Review/Submit")]
+        public async Task<IActionResult> SubmitReview(ReviewSubmitCommand request)
+        {
+            var token = await _mediator.Send(request);
+            if(token == null)
+            {
+                return BadRequest("could not submit");
+            }
+            return Ok(token);
+        }
+        [HttpGet("Food/Top/Rated")]
+        public async Task<IActionResult> GetTopRatedFoods([FromQuery] FoodTopRatedCommand request)
+        {
+            var token= await _mediator.Send(request);
+            if(token == null)
+            {
+                return NotFound("no foods with reviews found.");
+            }
+            return Ok(token);
+        }
+
 
 
 
