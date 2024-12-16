@@ -10,7 +10,9 @@ using RestaurantManagement.Application.Feature.Commands.OrderCommands;
 using RestaurantManagement.Application.Feature.Commands.ReviewCommands.SubmitReview;
 using RestaurantManagement.Application.Feature.Commands.UserCommands.AddUser;
 using RestaurantManagement.Application.Feature.Commands.UserCommands.UpdateUserProfile;
+using RestaurantManagement.Application.Feature.Queries.FoodQueries.GetFoodComment;
 using RestaurantManagement.Application.Feature.Queries.Login;
+using RestaurantManagement.Application.Feature.Queries.ReviewQueries.ReviewHistory;
 
 namespace RestaurantManagement.presentation.Controllers
 {
@@ -124,6 +126,28 @@ namespace RestaurantManagement.presentation.Controllers
             }
             return Ok(token);
         }
+        [HttpGet("Review/Hisotry")]
+        public async Task<IActionResult> GetReviewHistory([FromQuery]UserReviewHistoryQuery request)
+        {
+            var token= await _mediator.Send(request);
+            if( token == null)
+            {
+                return NotFound("didnt found any reviews");
+            }
+            return Ok(token);
+        }
+
+        [HttpGet("Food/Comments")]
+        public async Task<IActionResult> GetFoodComments([FromQuery] GetFoodCommentQuery request)
+        {
+            var token= await _mediator.Send(request);
+            if(token == null)
+            {
+                return NotFound("no comments yet");
+            }
+            return Ok(token);
+        }
+
 
 
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RestaurantManagement.Domain.Context;
 using RestaurantManagement.Domain.Entity;
+using RestaurantManagement.infrastructure.DTO;
 using RestaurantManagement.infrastructure.Repository.Interfaces;
 
 namespace RestaurantManagement.infrastructure.Repository.Implements
@@ -20,11 +21,11 @@ namespace RestaurantManagement.infrastructure.Repository.Implements
 
         public async Task<Food> FoodAdd(Food food)
         {
-             await _context.Foods.AddAsync(food);
+            await _context.Foods.AddAsync(food);
             _context.SaveChanges();
             return food;
         }
-        public  Task<List<Food>> FoodByCategory(int categoryId)
+        public Task<List<Food>> FoodByCategory(int categoryId)
         {
             return _context.Foods
                 .Where(x => x.CategoryId == categoryId)
@@ -33,7 +34,7 @@ namespace RestaurantManagement.infrastructure.Repository.Implements
         }
         public Task<Food?> FoodById(int id)
         {
-           return _context.Foods.FirstOrDefaultAsync(x => x.Id == id);
+            return _context.Foods.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public IQueryable<Food> FoodFilterByPrice()
@@ -41,13 +42,19 @@ namespace RestaurantManagement.infrastructure.Repository.Implements
             return _context.Foods.AsQueryable();
         }
 
-        public async Task<List<Food>> GetTopRatedFood()
+        public async Task<List<TopRatedFoodDto>> GetTopRatedFood()
         {
-            return await  _context.Foods
+            return await _context.Foods
                 .Include(f => f.Reviews)
                 .Where(f => f.Reviews.Any())
                 .OrderByDescending(f => f.Reviews.Average(x => x.Rating))
                 .Take(5)
+                     .Select(f => new TopRatedFoodDto
+                     {
+                         FoodId = f.Id,
+                         Name = f.Name,
+                         AvarageRating = f.Reviews.Average(r => r.Rating)
+                     })
                 .ToListAsync();
 
         }

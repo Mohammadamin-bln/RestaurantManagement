@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RestaurantManagement.Domain.Entity;
+using RestaurantManagement.infrastructure.DTO;
 
 namespace RestaurantManagement.infrastructure.Repository.Interfaces
 {
@@ -17,6 +18,6 @@ namespace RestaurantManagement.infrastructure.Repository.Interfaces
         public IQueryable<Food> FoodFilterByPrice();
 
         public Task<Food?> FoodById(int id);
-        public Task<List<Food>> GetTopRatedFood();
+        public Task<List<TopRatedFoodDto>> GetTopRatedFood();
     }
 }

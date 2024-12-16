@@ -7,9 +7,9 @@ using MediatR;
 using RestaurantManagement.Domain.Entity;
 using RestaurantManagement.infrastructure.DTO;
 
-namespace RestaurantManagement.Application.Feature.Commands.FoodCommands.TopRatedFoods
+namespace RestaurantManagement.Application.Feature.Queries.ReviewQueries.ReviewHistory
 {
-    public class FoodTopRatedCommand : IRequest<List<TopRatedFoodDto>>
+    public class UserReviewHistoryQuery : IRequest<List<ReviewHistoryDto>>
     {
     }
 }
